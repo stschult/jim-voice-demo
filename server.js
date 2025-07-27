@@ -15,6 +15,7 @@ const DEMO_DATA = {
 };
 
 app.post('/voice', (req, res) => {
+  console.log('Voice endpoint called');
   const twiml = new twilio.twiml.VoiceResponse();
   
   twiml.say({
@@ -55,10 +56,17 @@ app.post('/voice', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
+  console.log('Health check called');
   res.json({ status: 'healthy', partner: 'Jim Foley' });
 });
 
+app.get('/', (req, res) => {
+  console.log('Root endpoint called');
+  res.json({ message: 'Jim Foley Voice Demo is running', status: 'ok' });
+});
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log('Jim Foley Voice Demo running on port ' + PORT);
+  console.log('Server listening on all interfaces (0.0.0.0)');
 });
