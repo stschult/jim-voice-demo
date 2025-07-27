@@ -19,7 +19,7 @@ app.post('/voice', (req, res) => {
   const twiml = new twilio.twiml.VoiceResponse();
   
   const voiceSettings = {
-    voice: 'Polly.Neural.Matthew',
+    voice: 'Polly.Matthew',
     language: 'en-US'
   };
   
