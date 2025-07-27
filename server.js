@@ -18,36 +18,30 @@ app.post('/voice', (req, res) => {
   console.log('Voice endpoint called');
   const twiml = new twilio.twiml.VoiceResponse();
   
-  twiml.say({
+  const voiceSettings = {
     voice: 'Polly.Neural.Matthew',
-    rate: '95%'
-  }, 'Hi Jim! It has been a few days since you had an update, so let me give you an overall assessment, followed by the major red flags you need to address.');
+    language: 'en-US'
+  };
+  
+  twiml.say(voiceSettings, 'Hi Jim! It has been a few days since you had an update, so let me give you an overall assessment, followed by the major red flags you need to address.');
   
   twiml.pause({ length: 1 });
   
-  twiml.say({
-    voice: 'Polly.Neural.Matthew',
-    rate: '95%'
-  }, DEMO_DATA.jim.overallStatus + ' TechFlow Solutions is your biggest concern right now.');
+  twiml.say(voiceSettings, DEMO_DATA.jim.overallStatus + ' TechFlow Solutions is your biggest concern right now.');
   
   twiml.pause({ length: 1 });
   
-  twiml.say({
-    voice: 'Polly.Neural.Matthew',
-    rate: '95%'
-  }, 'Red flag one: ' + DEMO_DATA.jim.redFlags[0]);
+  twiml.say(voiceSettings, 'Red flag number one: ' + DEMO_DATA.jim.redFlags[0]);
   
   twiml.pause({ length: 1 });
   
-  twiml.say({
-    voice: 'Polly.Neural.Matthew',
-    rate: '95%'
-  }, 'Red flag two: ' + DEMO_DATA.jim.redFlags[1]);
+  twiml.say(voiceSettings, 'Red flag number two: ' + DEMO_DATA.jim.redFlags[1]);
   
-  twiml.say({
-    voice: 'Polly.Neural.Matthew',
-    rate: '95%'
-  }, 'Thanks for calling, Jim. Focus on TechFlow today!');
+  twiml.pause({ length: 1.5 });
+  
+  twiml.say(voiceSettings, 'That covers your priority items for today, Jim. If you need more details on any specific audit, feel free to call back anytime. Focus on TechFlow today, and have a great day!');
+  
+  twiml.pause({ length: 1 });
   
   twiml.hangup();
   
