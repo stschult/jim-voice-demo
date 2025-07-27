@@ -19,27 +19,26 @@ app.post('/voice', (req, res) => {
   const twiml = new twilio.twiml.VoiceResponse();
   
   const voiceSettings = {
-    voice: 'Polly.Matthew',
-    language: 'en-US'
+    voice: 'Polly.Matthew'
   };
   
-  twiml.say(voiceSettings, 'Hi Jim! It has been a few days since you had an update, so let me give you an overall assessment, followed by the major red flags you need to address.');
+  twiml.say(voiceSettings, 'Hi Jim! It\'s been a few days since your last update, so let me give you an overall assessment... followed by the major red flags you need to address.');
   
-  twiml.pause({ length: 1 });
+  twiml.pause({ length: 1.2 });
   
-  twiml.say(voiceSettings, DEMO_DATA.jim.overallStatus + ' TechFlow Solutions is your biggest concern right now.');
-  
-  twiml.pause({ length: 1 });
-  
-  twiml.say(voiceSettings, 'Red flag number one: ' + DEMO_DATA.jim.redFlags[0]);
-  
-  twiml.pause({ length: 1 });
-  
-  twiml.say(voiceSettings, 'Red flag number two: ' + DEMO_DATA.jim.redFlags[1]);
+  twiml.say(voiceSettings, 'Overall status: You have 6 active audits. 4 are progressing well, but 2 need immediate attention. TechFlow Solutions is your biggest concern right now.');
   
   twiml.pause({ length: 1.5 });
   
-  twiml.say(voiceSettings, 'That covers your priority items for today, Jim. If you need more details on any specific audit, feel free to call back anytime. Focus on TechFlow today, and have a great day!');
+  twiml.say(voiceSettings, 'Red flag one: TechFlow Solutions S-O-C 2 audit has 3 critical controls overdue by 4 days.');
+  
+  twiml.pause({ length: 1.2 });
+  
+  twiml.say(voiceSettings, 'Red flag two: RetailMax discovered a significant finding in payment processing controls.');
+  
+  twiml.pause({ length: 2 });
+  
+  twiml.say(voiceSettings, 'That covers your priority items for today, Jim. If you need more details on any specific audit... feel free to call back anytime. Focus on TechFlow today, and have a great day!');
   
   twiml.pause({ length: 1 });
   
